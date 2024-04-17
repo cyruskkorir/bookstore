@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 
+
 @Controller
 public class UserController {
     private final UserService userService;
@@ -34,15 +35,20 @@ public class UserController {
     public String updateUser(@PathVariable Long id, @RequestBody User user) {
         User newUser = new User();
         newUser.setEmail(user.getEmail());
-        newUser.setName(user.getName());
+        newUser.setPassword(user.getPassword());
         Optional<User> oldUser = userService.findUserById(id);
         if(oldUser.isPresent()){newUser.setId(oldUser.get().getId());}
         return "Updated Successfully";
     }
-    @PostMapping("users/add")
+    // @GetMapping("/users/add")
+    // public String getMethodName(@ModelAttribute User user) {
+    //     return "add-user";
+    // }
+    
+    @PostMapping("/users/save")
     public String addUser(@ModelAttribute User user) {
         userService.addUser(user);
-        return "add-user";
+        return "result";
     }
     
     
