@@ -4,8 +4,8 @@
     <!-- Add necessary CSS and JS dependencies -->
 </head>
 <body>
-    <h1>Create a New User</h1>
-    <form th:action="@{/users/save}" th:object="${user}" method="post">
+    <h1>Login User</h1>
+    <form th:action="@{/users/show-books}" th:object="${user}" method="post">
         <!-- Input fields, checkboxes, etc. -->
         <input type="text" th:field="*{email}" placeholder="Email">
         <input type="text" th:field="*{password}" placeholder="Password">

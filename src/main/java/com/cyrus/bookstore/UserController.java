@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 
+
 @Controller
 public class UserController {
     private final UserService userService;
@@ -31,7 +32,7 @@ public class UserController {
         model.addAttribute("users", users);
         return "user-list";
     }
-    @PutMapping("users/update/{id}")
+    @PutMapping("/users/update/{id}")
     public String updateUser(@PathVariable Long id, @RequestBody User user) {
         User newUser = new User();
         newUser.setEmail(user.getEmail());
@@ -40,10 +41,17 @@ public class UserController {
         if(oldUser.isPresent()){newUser.setId(oldUser.get().getId());}
         return "Updated Successfully";
     }
-    // @GetMapping("/users/add")
-    // public String getMethodName(@ModelAttribute User user) {
-    //     return "add-user";
-    // }
+    @GetMapping("/users/register")
+    public String registerUser(Model model) {
+        model.addAttribute("user", new User());
+        return "register";
+    }
+    @GetMapping("/login")
+    public String loginUser(Model model) {
+        model.addAttribute("user", new User());
+        return "login";
+    }
+    
     
     @PostMapping("/users/save")
     public String addUser(@ModelAttribute User user) {

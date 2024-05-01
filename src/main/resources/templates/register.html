@@ -1,10 +1,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head> 
-        <title>Getting Started: Handling Form Submission</title>
+        <title>Register User</title>
+        <link rel="stylesheet" href="style.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-        <form action="#" th:action="@{/login}" method="post">
+        <form th:action="@{/users/save}" th:object="${user}" method="post">
             <div class="container">
               <h1>Register</h1>
               <p>Please fill in this form to create an account.</p>
@@ -20,7 +21,7 @@
               <button type="submit" class="registerbtn">Register</button>
             </div>
             <div class="container signin">
-              <p>Already have an account? <a href="#login">Sign in</a>.</p>
+              <p>Already have an account? <a th:href="@{login}">Sign in</a>.</p>
             </div>
           </form>
     </body>

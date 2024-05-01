@@ -24,6 +24,16 @@ public class BookService {
     public void deleteBookById(Long id){
         bookRepository.deleteById(id);
     }
+    public void updateBook(Long id, Book book){
+        Optional<Book> oldBook = bookRepository.findById(id);
+        if (oldBook.isPresent()) {
+            Book newBook = new Book();
+            newBook.setAuthor(book.getAuthor());
+            newBook.setTitle(book.getTitle());
+            newBook.setId(id);
+        }
+        
+    }
 
     
 }

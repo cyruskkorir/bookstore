@@ -18,6 +18,7 @@
             <tr th:each="book : ${books}">
                 <td><span th:text="${book.title}">Title</span></td>
                 <td><span th:text="${book.author}">Author</span></td>
+                <td><span th:text="${book.quantity}">Quantity</span></td>
             </tr>
         </tbody>
     </table>
