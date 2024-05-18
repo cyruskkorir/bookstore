@@ -1,16 +1,28 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!-- Add necessary CSS and JS dependencies -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Login User</h1>
     <form th:action="@{/users/show-books}" th:object="${user}" method="post">
-        <!-- Input fields, checkboxes, etc. -->
         <input type="text" th:field="*{email}" placeholder="Email">
         <input type="text" th:field="*{password}" placeholder="Password">
 
-        <!-- Add other form elements here -->
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <form th:action="@{/login}" method="post">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
         <button type="submit">Login</button>
     </form>
 </body>
