@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 
 
@@ -21,8 +23,15 @@ public class BookController {
         this.bookService = bookService;
     }
 
+    @PostMapping("/books/add-book")
+    public String postBook(@RequestBody Book book) {
+        bookService.addBook(book);
+        return "redirect:/books";
+    }
+    
+
     @GetMapping("/books")
-    public String requestMethodName(Model model) {
+    public String requestBooks(Model model) {
         List<Book> books = bookService.getAllBooks();
         model.addAttribute("books", books);
         return "book-list";

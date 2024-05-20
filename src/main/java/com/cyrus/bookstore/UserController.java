@@ -41,10 +41,10 @@ public class UserController {
         if(oldUser.isPresent()){newUser.setId(oldUser.get().getId());}
         return "Updated Successfully";
     }
-    @GetMapping("/users/register")
+    @PostMapping("/users/register")
     public String registerUser(Model model) {
         model.addAttribute("user", new User());
-        return "register";
+        return "redirect:/login";
     }
     @GetMapping("/login")
     public String loginUser(Model model) {
