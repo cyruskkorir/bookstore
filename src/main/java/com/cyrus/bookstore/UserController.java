@@ -5,10 +5,14 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -41,15 +45,24 @@ public class UserController {
         if(oldUser.isPresent()){newUser.setId(oldUser.get().getId());}
         return "Updated Successfully";
     }
-    @PostMapping("/users/register")
-    public String registerUser(Model model) {
+    @GetMapping("/register")
+    public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
-        return "redirect:/login";
+        return "register";
     }
-    @GetMapping("/login")
+
+    @PostMapping("/register")
+    public String processRegistration(@ModelAttribute("user") @Valid User user, BindingResult result) {
+        if (result.hasErrors()) {
+            return "register"; // Show form with validation errors
+        }
+        userService.addUser(user);
+        return "redirect:/loginuser"; // Redirect to login page
+    }
+    @GetMapping("/loginuser")
     public String loginUser(Model model) {
         model.addAttribute("user", new User());
-        return "login";
+        return "loginuser";
     }
     
     
