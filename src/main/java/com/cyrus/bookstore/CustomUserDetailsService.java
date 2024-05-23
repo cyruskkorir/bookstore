@@ -1,22 +1,29 @@
 package com.cyrus.bookstore;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomUserDetailsService  {
-    // @Autowired
-    // private UserService userService;
+public class CustomUserDetailsService implements UserDetailsService {
+    @Autowired
+    private UserService userService;
 
-    // @Override
-    // public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-    //     User user = userService.findUserByEmail(email)
-    //             .orElseThrow(() -> new UsernameNotFoundException("Email not registered: " + email));
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<User> user = userService.findUserByEmail(username);
+        if(user.isPresent()){
 
-    //     // Create UserDetails object (e.g., using Spring Security's User class)
-    //     return new org.springframework.security.core.userdetails.User(
-    //             user.getEmail(),
-    //             user.getPassword(),
-    //             Collections.emptyList());
-    // }
+                return new MyUserDetails(user.get());
+        }else{
+            throw new UnsupportedOperationException("Unimplemented method 'loadUserByUsername'");
+
+        }
+    }
+
 }
 

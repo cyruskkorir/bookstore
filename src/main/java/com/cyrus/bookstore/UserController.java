@@ -8,13 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import jakarta.validation.Valid;
-
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 
 
@@ -64,6 +63,19 @@ public class UserController {
         model.addAttribute("user", new User());
         return "loginuser";
     }
+    // @PostMapping("/dashboard")
+    // public String postLogins(@RequestBody User user, BindingResult bindingResult) {
+    //     if (bindingResult.hasErrors()) {
+    //         return "loginuser";   
+    //     }
+    //     return "dashboard";
+    // }
+
+    @GetMapping("/dashboard")
+    public String getDashboard() {
+        return "dashboard";
+    }
+    
     
     
     @PostMapping("/users/save")
