@@ -19,6 +19,7 @@ public class SecurityConfig  {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception 
 {
         http.authorizeHttpRequests((authorize)->authorize
+        .requestMatchers("/user").hasAuthority("USER")
         .anyRequest()
         .authenticated())
         .httpBasic(Customizer.withDefaults())

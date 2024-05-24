@@ -29,28 +29,28 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-    @GetMapping("/users")
+    @GetMapping("/user")
     public String getUsers(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
         return "user-list";
     }
-    @PutMapping("/users/update/{id}")
+    @PutMapping("/user/update/{id}")
     public String updateUser(@PathVariable Long id, @RequestBody User user) {
-        User newUser = new User();
+        User newUser = new User(user.getEmail(), user.getPassword());
         newUser.setEmail(user.getEmail());
         newUser.setPassword(user.getPassword());
         Optional<User> oldUser = userService.findUserById(id);
         if(oldUser.isPresent()){newUser.setId(oldUser.get().getId());}
         return "Updated Successfully";
     }
-    @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new User());
+    @GetMapping("/user/register")
+    public String showRegistrationForm(Model model, User user) {
+        model.addAttribute("user", new User(user.getEmail(), user.getPassword()));
         return "register";
     }
 
-    @PostMapping("/register")
+    @PostMapping("/user/register")
     public String processRegistration(@ModelAttribute("user") @Valid User user, BindingResult result) {
         if (result.hasErrors()) {
             return "register"; // Show form with validation errors
@@ -58,10 +58,10 @@ public class UserController {
         userService.addUser(user);
         return "redirect:/loginuser"; // Redirect to login page
     }
-    @GetMapping("/loginuser")
-    public String loginUser(Model model) {
-        model.addAttribute("user", new User());
-        return "loginuser";
+    @GetMapping("user/login")
+    public String loginUser(Model model, @RequestBody User user) {
+        model.addAttribute("user", new User(user.getEmail(), user.getPassword()));
+        return "user/login";
     }
     // @PostMapping("/dashboard")
     // public String postLogins(@RequestBody User user, BindingResult bindingResult) {
@@ -71,14 +71,14 @@ public class UserController {
     //     return "dashboard";
     // }
 
-    @GetMapping("/dashboard")
+    @GetMapping("user/dashboard")
     public String getDashboard() {
         return "dashboard";
     }
     
     
     
-    @PostMapping("/users/save")
+    @PostMapping("/admin/save")
     public String addUser(@ModelAttribute User user) {
         userService.addUser(user);
         return "result";
