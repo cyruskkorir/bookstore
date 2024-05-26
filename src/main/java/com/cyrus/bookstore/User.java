@@ -1,7 +1,5 @@
 package com.cyrus.bookstore;
 
-import org.hibernate.annotations.ColumnDefault;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,19 +17,13 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank @Email
-    private String email;
+    private String userName;
     private String password;
-    @ColumnDefault(value = "USER")
-    private String role;
-
-    
     public User() {
     }
 
-
-    public User(@NotBlank @Email String email, String password) {
-        this.email = email;
+    public User(@NotBlank @Email String userName, String password) {
+        this.userName = userName;
         this.password = password;
     }
 

@@ -29,7 +29,7 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-    @GetMapping("/user")
+    @GetMapping("/user/users")
     public String getUsers(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
@@ -38,38 +38,38 @@ public class UserController {
     @PutMapping("/user/update/{id}")
     public String updateUser(@PathVariable Long id, @RequestBody User user) {
         User newUser = new User();
-        newUser.setEmail(user.getEmail());
+        newUser.setUserName(user.getUserName());
         newUser.setPassword(user.getPassword());
         Optional<User> oldUser = userService.findUserById(id);
         if(oldUser.isPresent()){newUser.setId(oldUser.get().getId());}
         return "Updated Successfully";
     }
-    @GetMapping("/user/register")
+    @GetMapping("/register")
     public String showRegistrationForm(Model model, User user) {
         model.addAttribute("user", new User());
         return "register";
     }
 
-    @PostMapping("/user/register")
+    @PostMapping("/register")
     public String processRegistration(@ModelAttribute("user") @Valid User user, BindingResult result) {
         if (result.hasErrors()) {
             return "register"; // Show form with validation errors
         }
         userService.addUser(user);
-        return "redirect:/loginuser"; // Redirect to login page
+        return "redirect:/login"; // Redirect to login page
     }
-    @GetMapping("user/login")
-    public String loginUser(Model model, @RequestBody User user) {
+    @GetMapping("/login")
+    public String login(Model model) {
         model.addAttribute("user", new User());
-        return "user/login";
+        return "login";
     }
-    // @PostMapping("/dashboard")
-    // public String postLogins(@RequestBody User user, BindingResult bindingResult) {
-    //     if (bindingResult.hasErrors()) {
-    //         return "loginuser";   
-    //     }
-    //     return "dashboard";
-    // }
+    @PostMapping("/login")
+    public String postLogins(@RequestBody User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "login";   
+        }
+        return "dashboard";
+    }
 
     @GetMapping("user/dashboard")
     public String getDashboard() {

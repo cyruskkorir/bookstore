@@ -2,9 +2,6 @@ package com.cyrus.bookstore;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -12,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class DashboardController {
 
 
-    @GetMapping("/dash")
-    public String getDashboard(@RequestParam String param) {
-        return "dashboard";
+    @GetMapping("/home")
+    public String getDashboard() {
+        return "hello";
     }
-    @PostMapping("/dash")
-    public String postMethodName(@RequestBody String entity) {
-        return entity;
-    }
+    // @PostMapping("/home")
+    // public String postMethodName(@RequestBody String entity) {
+    //     return entity;
+    // }
     
     
     
