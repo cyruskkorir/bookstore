@@ -37,7 +37,7 @@ public class UserController {
     }
     @PutMapping("/user/update/{id}")
     public String updateUser(@PathVariable Long id, @RequestBody User user) {
-        User newUser = new User(user.getEmail(), user.getPassword());
+        User newUser = new User();
         newUser.setEmail(user.getEmail());
         newUser.setPassword(user.getPassword());
         Optional<User> oldUser = userService.findUserById(id);
@@ -46,7 +46,7 @@ public class UserController {
     }
     @GetMapping("/user/register")
     public String showRegistrationForm(Model model, User user) {
-        model.addAttribute("user", new User(user.getEmail(), user.getPassword()));
+        model.addAttribute("user", new User());
         return "register";
     }
 
@@ -60,7 +60,7 @@ public class UserController {
     }
     @GetMapping("user/login")
     public String loginUser(Model model, @RequestBody User user) {
-        model.addAttribute("user", new User(user.getEmail(), user.getPassword()));
+        model.addAttribute("user", new User());
         return "user/login";
     }
     // @PostMapping("/dashboard")
