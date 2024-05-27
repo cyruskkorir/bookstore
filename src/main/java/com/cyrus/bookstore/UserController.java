@@ -3,6 +3,7 @@ package com.cyrus.bookstore;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +25,7 @@ import jakarta.validation.Valid;
 
 @Controller
 public class UserController {
+    @Autowired
     private final UserService userService;
 
     public UserController(UserService userService) {
@@ -45,8 +47,7 @@ public class UserController {
         return "Updated Successfully";
     }
     @GetMapping("/register")
-    public String showRegistrationForm(Model model, User user) {
-        model.addAttribute("user", new User());
+    public String showRegistrationForm() {
         return "register";
     }
 
@@ -59,12 +60,11 @@ public class UserController {
         return "redirect:/login"; // Redirect to login page
     }
     @GetMapping("/login")
-    public String login(Model model) {
-        model.addAttribute("user", new User());
+    public String showLoginPage() {
         return "login";
     }
     @PostMapping("/login")
-    public String postLogins(@RequestBody User user, BindingResult bindingResult) {
+    public String postLogins(BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "login";   
         }
