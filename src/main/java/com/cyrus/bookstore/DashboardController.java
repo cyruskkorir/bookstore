@@ -1,7 +1,6 @@
 package com.cyrus.bookstore;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 
 
 
@@ -9,10 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class DashboardController {
 
 
-    @GetMapping("/home")
-    public String getDashboard() {
-        return "hello";
-    }
+    // @GetMapping("/dashboard")
+    // public String getDashboard() {
+    //     return "dashboard";
+    // }
     // @PostMapping("/home")
     // public String postMethodName(@RequestBody String entity) {
     //     return entity;

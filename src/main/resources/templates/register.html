@@ -1,16 +1,20 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+</head>
 <body>
-    <h1 th:text="#{label.form.title}">Registration Form</h1>
-    <form action="/" th:object="${user}" method="POST" enctype="utf8">
-        <div>
-            <label th:text="#{label.user.firstName}">First Name</label>
-            <input th:field="*{firstName}"/>
-            <p th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>
-        </div>
-        <!-- Repeat similar fields for last name, email, password, and password confirmation -->
-        <!-- ... -->
-        <button type="submit" th:text="#{label.form.submit}">Submit</button>
+    <h2>Register</h2>
+    <form th:action="@{/register}" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <input type="submit" value="Register">
     </form>
-    <a th:href="@{/login.html}" th:text="#{label.form.loginLink}">Login</a>
 </body>
 </html>
