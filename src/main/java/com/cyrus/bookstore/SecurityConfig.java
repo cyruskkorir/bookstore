@@ -16,7 +16,7 @@ public class SecurityConfig  {
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-}
+    }
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception 
