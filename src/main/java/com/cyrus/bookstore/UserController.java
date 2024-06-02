@@ -51,7 +51,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String processRegistration(User user) {
+    public String registerUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.addUser(user);
         return "redirect:/login"; // Redirect to login page

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Add necessary CSS and JS dependencies -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <h1>Add Book</h1>
+    <form th:action="@{/admin/add-book}" th:object="${book}" method="post">
+        <!-- Input fields, checkboxes, etc. -->
+        <input type="text" th:field="*{title}" placeholder="Title">
+        <input type="text" th:field="*{author}" placeholder="Author">
+        <input type="number" th:field="*{quantity}" placeholder="0">
+        <!-- Add other form elements here -->
+        <button type="submit">Add</button>
+    </form>
+</body>
+</html>
+
+  
