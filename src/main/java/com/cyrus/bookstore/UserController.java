@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 
+
 @Controller
 public class UserController {
 
@@ -56,27 +57,20 @@ public class UserController {
         userService.addUser(user);
         return "redirect:/login"; // Redirect to login page
     }
+    
 
     @GetMapping("/dashboard")
     public String getDashboard() {
         return "dashboard";
     }
-    // @GetMapping("/login")
-    // public String showLoginPage() {
-    //     return "login";
-    // }
-    // @PostMapping("/login")
-    // public String postLogins() {
-    //     return "redirect:/dashboard";
-    // }
 
-    
-    
-    
-    @PostMapping("/save")
-    public String addUser(@ModelAttribute User user) {
-        userService.addUser(user);
-        return "result";
+    @GetMapping("/login")
+    public String showLoginPage() {
+        return "login";
+    }
+    @PostMapping("/login")
+    public String postLogins() {
+        return "redirect:/dashboard";
     }
     
     
