@@ -23,12 +23,12 @@ public class SecurityConfig  {
 {
         http
         .authorizeHttpRequests((requests) -> requests
-        .requestMatchers("/", "/login", "/home", "/register", "/books", "/dashboard").permitAll()
+        .requestMatchers("/", "/login", "/home", "/register", "/books", "/error", "/dashboard").permitAll()
         .requestMatchers("/admin/").hasRole("ADMIN").anyRequest().authenticated()
         )
         .formLogin((form) -> form
         .loginPage("/login")
-        .defaultSuccessUrl("/dashboard")
+        // .defaultSuccessUrl("/dashboard")
         .permitAll()
         )
         .logout((logout) -> logout.permitAll());

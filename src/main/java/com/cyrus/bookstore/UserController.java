@@ -3,6 +3,7 @@ package com.cyrus.bookstore;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +25,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Controller
 public class UserController {
 
+    @Autowired
     private final UserService userService; 
+    @Autowired
     private final PasswordEncoder passwordEncoder;
 
     public UserController(UserService userService, PasswordEncoder passwordEncoder) {
@@ -65,13 +68,23 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String showLoginPage() {
+    public String showLoginPage(Model model) {
+        model.addAttribute("lg", new Login());
         return "login";
     }
     @PostMapping("/login")
-    public String postLogins() {
-        return "redirect:/dashboard";
+    public String postLogins(@ModelAttribute("lg") Login login, Model model) {
+        Optional<User> dbUser = userService.findUserByUserName(login.getUsername());
+        if (dbUser.isPresent()) {
+            if(passwordEncoder.matches(login.getPassword(), dbUser.get().getPassword())){
+                return "redirect:/dashboard";
+            }
+            // model.addAttribute("error", "Invalid credentials");
+        }else{
+            // model.addAttribute("error", "User not found");
+        }
+        return "login";
     }
-    
+
     
 }
