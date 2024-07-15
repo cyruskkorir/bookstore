@@ -62,10 +62,10 @@ public class UserController {
     }
     
 
-    @GetMapping("/dashboard")
-    public String getDashboard() {
-        return "dashboard";
-    }
+    // @GetMapping("/dashboard")
+    // public String getDashboard() {
+    //     return "dashboard";
+    // }
 
     @GetMapping("/login")
     public String showLoginPage(Model model) {
