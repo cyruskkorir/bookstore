@@ -1,9 +1,12 @@
-package com.cyrus.bookstore;
+package com.cyrus.bookstore.service;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+
+import com.cyrus.bookstore.BookRepository;
+import com.cyrus.bookstore.model.Book;
 
 @Service
 public class BookService {

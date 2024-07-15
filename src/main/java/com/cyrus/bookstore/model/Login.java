@@ -1,4 +1,4 @@
-package com.cyrus.bookstore;
+package com.cyrus.bookstore.model;
 
 public class Login {
     private String username;

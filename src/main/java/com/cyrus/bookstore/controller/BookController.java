@@ -1,4 +1,4 @@
-package com.cyrus.bookstore;
+package com.cyrus.bookstore.controller;
 
 
 import java.util.List;
@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import com.cyrus.bookstore.model.Book;
+import com.cyrus.bookstore.service.BookService;
 
 
 

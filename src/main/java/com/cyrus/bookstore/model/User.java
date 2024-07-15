@@ -1,4 +1,4 @@
-package com.cyrus.bookstore;
+package com.cyrus.bookstore.model;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package com.cyrus.bookstore;
+package com.cyrus.bookstore.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

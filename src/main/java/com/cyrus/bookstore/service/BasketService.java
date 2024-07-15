@@ -1,4 +1,4 @@
-package com.cyrus.bookstore;
+package com.cyrus.bookstore.service;
 
 import org.springframework.stereotype.Service;
 

@@ -27,8 +27,8 @@ public class SecurityConfig  {
         .requestMatchers("/admin/").hasRole("ADMIN").anyRequest().authenticated()
         )
         .formLogin((form) -> form
-        .loginPage("/login")
-        // .defaultSuccessUrl("/dashboard")
+        // .loginPage("/login")
+        .defaultSuccessUrl("/dashboard")
         .permitAll()
         )
         .logout((logout) -> logout.permitAll());

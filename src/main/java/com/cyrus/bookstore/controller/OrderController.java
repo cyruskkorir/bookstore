@@ -1,9 +1,13 @@
-package com.cyrus.bookstore;
+package com.cyrus.bookstore.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.cyrus.bookstore.OrderRequest;
+import com.cyrus.bookstore.model.Order;
+import com.cyrus.bookstore.service.orderService;
 
 @RestController
 @RequestMapping("/orders")
